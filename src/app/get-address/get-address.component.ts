@@ -9,10 +9,13 @@ import { AppService} from '../app.service';
   styleUrls: ['./get-address.component.less']
 })
 export class GetAddressComponent implements OnInit {
-  data = []; // Array with the list of addresses
-  showData = false;
+  addresses = []; // Array with the list of addresses
+  showAddresses = false;
   postCode = "";
   addressSelected = "";
+  // Map starting marker lat/lng
+  lat = 51.5085489;
+  lng = -0.1257543;
 
   constructor(private AppService: AppService) { }
 
@@ -25,9 +28,12 @@ export class GetAddressComponent implements OnInit {
   onGetAddress(){
   	this.AppService.getAddress(this.postCode.replace(/\s+/g, ''))
 	  	.subscribe(
-	  		(addresses: any[]) => { 
-	  			this.data = addresses["Addresses"];
-	  			this.showData = true;
+	  		(addresses: any[]) => {
+	  			this.addresses = addresses["Addresses"];
+	  			this.showAddresses = true;
+	  			// Update map marker with new postcode lat/lng
+	  			this.lat = addresses["Latitude"];
+  				this.lng = addresses["Longitude"];
 	  		},
 	  		(error) => console.log(error)
 	  	);

@@ -12,13 +12,20 @@
 		</div>
 		</fieldset>
 	</form>
-	
+
 	<!-- Dropdown list with all the addresses related to the postcode given -->
-	<select *ngIf="showData" [(ngModel)]="addressSelected">
+	<select *ngIf="showAddresses" [(ngModel)]="addressSelected">
 	  <option value="">Please Select</option>
-	  <option *ngFor="let address of data">  {{ address }} >  </option>
+	  <option *ngFor="let address of addresses">  {{ address }} >  </option>
 	</select>
 
 	<!-- Address chosen -->
 	<div class="">{{ addressSelected }}</div>
+</section>
+
+
+<section class="map">
+	<agm-map [zoom]="10" [latitude]="lat" [longitude]="lng">
+	  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+	</agm-map>
 </section>

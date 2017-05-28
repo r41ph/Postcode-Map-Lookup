@@ -8,6 +8,8 @@ import { GetAddressComponent } from './get-address/get-address.component';
 
 import { AppService } from './app.service';
 
+import { AgmCoreModule } from '@agm/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,10 @@ import { AppService } from './app.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBM0kEoYcVKqru_CnVUzSi9fR8OnL62m4M'
+    })
   ],
   providers: [AppService],
   bootstrap: [AppComponent]
