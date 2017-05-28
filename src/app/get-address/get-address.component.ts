@@ -53,12 +53,4 @@ export class GetAddressComponent implements OnInit {
 	  		}
 	  	);
   }
-
-  /**
-   * Setting Map height equal to window height
-   */
-   setMapHeight() {
-   		// document.querySelector('body').className += ' fixed'; 
-   		this.windowHeight = window.innerHeight;
-   }
 }
