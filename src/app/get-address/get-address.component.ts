@@ -13,9 +13,12 @@ export class GetAddressComponent implements OnInit {
   showAddresses = false;
   postCode = "";
   addressSelected = "";
+  error = false;
+  
   // Map starting marker lat/lng
   lat = 51.5085489;
   lng = -0.1257543;
+
 
   constructor(private AppService: AppService) { }
 
@@ -31,11 +34,25 @@ export class GetAddressComponent implements OnInit {
 	  		(addresses: any[]) => {
 	  			this.addresses = addresses["Addresses"];
 	  			this.showAddresses = true;
+	  			this.error = false;
 	  			// Update map marker with new postcode lat/lng
 	  			this.lat = addresses["Latitude"];
   				this.lng = addresses["Longitude"];
 	  		},
-	  		(error) => console.log(error)
+	  		(error) => {
+	  			// console.log(error)
+	  			// Show error message
+	  			this.error = true;
+	  			// Hide error message after interval
+	  			setInterval(() => {
+	  				this.error = false;
+	  			}, 4000);
+	  		}
 	  	);
+  }
+
+
+  onFocus() {
+  	console.log("sdsd");
   }
 }

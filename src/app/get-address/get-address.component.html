@@ -1,26 +1,25 @@
 <section class="postcode">
 	<!-- Postcode form -->
-	<form id="postcode-input" action="process.php">
+	<form class="postcode-form" action="">
 		<fieldset>
-		<legend>Enter the postcode you want to find</legend>
-		<div>
-		  <label for="postcode">Postcode:</label>
-		  <input [(ngModel)]="postCode" name="postcode" type="text" placeholder="Enter a UK postcode" required autofocus>
-		</div>
-		<div>
-			<button (click)="onGetAddress()">Find address</button>
-		</div>
+			<legend>Postcode finder</legend>
+			<div>
+			  <label for="postcode">Postcode:</label>
+			  <input (focus)="onFocus()" class="postcode-input" [ngClass]="{'postcode-error': error}" [(ngModel)]="postCode" name="postcode" type="text" placeholder="Enter a UK postcode" required autofocus>
+			  <p [ngClass]="{'postcode-error-text': error}">It couldn't find any matches for: {{postCode}}</p>
+			</div>
+			<div>
+				<button (click)="onGetAddress()">Find address</button>
+			</div>
 		</fieldset>
 	</form>
 
 	<!-- Dropdown list with all the addresses related to the postcode given -->
+	<p *ngIf="showAddresses">Addresses in the postcode: <span>{{ postCode }}</span></p>
 	<select *ngIf="showAddresses" [(ngModel)]="addressSelected">
-	  <option value="">Please Select</option>
-	  <option *ngFor="let address of addresses">  {{ address }} >  </option>
+	  <option  value="">View list of addresses</option>
+	  <option *ngFor="let address of addresses">{{ address }}</option>
 	</select>
-
-	<!-- Address chosen -->
-	<div class="">{{ addressSelected }}</div>
 </section>
 
 
