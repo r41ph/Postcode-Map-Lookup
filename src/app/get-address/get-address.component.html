@@ -1,0 +1,24 @@
+<section class="postcode">
+	<!-- Postcode form -->
+	<form id="postcode-input" action="process.php">
+		<fieldset>
+		<legend>Enter the postcode you want to find</legend>
+		<div>
+		  <label for="postcode">Postcode:</label>
+		  <input [(ngModel)]="postCode" name="postcode" type="text" placeholder="Enter a UK postcode" required autofocus>
+		</div>
+		<div>
+			<button (click)="onGetAddress()">Find address</button>
+		</div>
+		</fieldset>
+	</form>
+	
+	<!-- Dropdown list with all the addresses related to the postcode given -->
+	<select *ngIf="showData" [(ngModel)]="addressSelected">
+	  <option value="">Please Select</option>
+	  <option *ngFor="let address of data">  {{ address }} >  </option>
+	</select>
+
+	<!-- Address chosen -->
+	<div class="">{{ addressSelected }}</div>
+</section>
