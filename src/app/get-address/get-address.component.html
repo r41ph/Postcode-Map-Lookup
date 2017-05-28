@@ -1,30 +1,30 @@
-<section class="postcode">
-	<!-- Postcode form -->
-	<form class="postcode-form" action="">
-		<fieldset>
-			<legend>Postcode finder</legend>
-			<div>
-			  <label for="postcode">Postcode:</label>
-			  <input (focus)="onFocus()" class="postcode-input" [ngClass]="{'postcode-error': error}" [(ngModel)]="postCode" name="postcode" type="text" placeholder="Enter a UK postcode" required autofocus>
-			  <p [ngClass]="{'postcode-error-text': error}">It couldn't find any matches for: {{postCode}}</p>
-			</div>
-			<div>
-				<button (click)="onGetAddress()">Find address</button>
-			</div>
-		</fieldset>
-	</form>
+<div class="postcode-finder clearfix">
 
-	<!-- Dropdown list with all the addresses related to the postcode given -->
-	<p *ngIf="showAddresses">Addresses in the postcode: <span>{{ postCode }}</span></p>
-	<select *ngIf="showAddresses" [(ngModel)]="addressSelected">
-	  <option  value="">View list of addresses</option>
-	  <option *ngFor="let address of addresses">{{ address }}</option>
-	</select>
-</section>
+	<!-- Postcode -->
+	<section class="postcode">
+		<!-- Postcode form -->
+		<div class="postcode-details">
+			<form class="postcode-form" action="">
+				<fieldset>
+				  <label>Postcode Finder:</label>
+				  <input class="postcode-input" [ngClass]="{'postcode-error': error}" [(ngModel)]="postCode" name="postcode-input" type="text" placeholder="Enter a UK postcode" required autofocus>
+				  <div class="postcode-error-container" [ngClass]="{'postcode-error-text': error}">It couldn't find any matches for: <span>{{postCode}}</span></div>
+				  <button (click)="onGetAddress()">Find address</button>
+				</fieldset>
+			</form>
 
+			<!-- List with all the addresses related to the postcode given -->
+			<ul class="postcode-addresses" *ngIf="showAddresses" [(ngModel)]="addressSelected">
+			  <li *ngFor="let address of addresses">{{ address }}</li>
+			</ul>
+		</div>
+	</section>
 
-<section class="map">
-	<agm-map [zoom]="10" [latitude]="lat" [longitude]="lng">
-	  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-	</agm-map>
-</section>
+	<!-- Map -->
+	<section class="map-container">
+		<agm-map class="map" [zoom]="10" [latitude]="lat" [longitude]="lng">
+		  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+		</agm-map>
+	</section>
+
+</div>

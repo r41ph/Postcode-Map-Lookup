@@ -19,6 +19,7 @@ export class GetAddressComponent implements OnInit {
   lat = 51.5085489;
   lng = -0.1257543;
 
+  windowHeight;
 
   constructor(private AppService: AppService) { }
 
@@ -47,12 +48,17 @@ export class GetAddressComponent implements OnInit {
 	  			setInterval(() => {
 	  				this.error = false;
 	  			}, 4000);
+	  			// Hide addresses
+	  			this.showAddresses = false;
 	  		}
 	  	);
   }
 
-
-  onFocus() {
-  	console.log("sdsd");
-  }
+  /**
+   * Setting Map height equal to window height
+   */
+   setMapHeight() {
+   		// document.querySelector('body').className += ' fixed'; 
+   		this.windowHeight = window.innerHeight;
+   }
 }
